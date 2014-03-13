@@ -1,0 +1,59 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Job App</title>
+    <meta charset="utf-8">
+    <meta name="description" content="This is a student job app.">
+    <meta name="keywords" content="Student, Students, Jobs, Student job, student jobs, recruitment, temp work, temporary work">
+    <meta name="author" content="Joeri Vankeirsbilck">
+
+    <!-- bootstrap, copy files into folder first -->
+{#    <link rel="stylesheet" href="css/bootstrap.min.css">#}
+{#    <link rel="stylesheet" href="css/bootstrap-theme.min.css">#}
+{#    <script type="text/javascript" src="js/bootstrap.min.js"></script>#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
+
+        <!-- load SASS file -->
+{#    <link rel="stylesheet" href="{% static 'scss/name.css' %}">#}
+
+    <!-- jquery -->
+    <script type="text/javascript" src="{% static 'js/vendor/jquery-1.11.0.js' %}"> </script>
+
+    <!-- modernizr -->
+    <script type="text/javascript" src="{% static 'js/vendor/modernizr.js' %}"> </script>
+
+    <!-- angular -->
+    <script type="text/javascript" src="{% static 'js/vendor/angular.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'js/vendor/angular-route.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'js/vendor/angular-resource.js' %}"> </script>
+
+    <!-- ionic, copy files into folder first -->
+
+
+    <!-- Apps -->
+    <script type="text/javascript" src="{% static 'js/app.js' %}"> </script>
+
+    <!-- controllers -->
+    <script type="text/javascript" src="{% static 'js/controllers/index.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'js/controllers/employer_index.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'js/controllers/create_ad.js' %}"> </script>
+
+{#    <script type="text/javascript" src="{% static 'js/controllers/add_project.js' %}"> </script>#}
+{#    <script type="text/javascript" src="{% static 'js/controllers/view_student.js' %}"> </script>#}
+
+
+
+</head>
+<body>
+<h1>Student Job App</h1>
+    <div ng-app="job_app">
+
+        <!-- this is where our angular stuff will go -->
+        <div ng-view></div>
+
+    </div>
+
+</body>
+</html>

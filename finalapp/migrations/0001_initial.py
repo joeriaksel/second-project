@@ -32,6 +32,8 @@ class Migration(SchemaMigration):
             ('zip', self.gf('django.db.models.fields.CharField')(max_length=30)),
             ('state', self.gf('django.db.models.fields.CharField')(max_length=30, blank=True)),
             ('country', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('latitude', self.gf('django.db.models.fields.PositiveSmallIntegerField')(null=True, blank=True)),
+            ('longitude', self.gf('django.db.models.fields.PositiveSmallIntegerField')(null=True, blank=True)),
             ('description', self.gf('django.db.models.fields.TextField')(blank=True)),
             ('company_logo', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
             ('profile_photo', self.gf('django.db.models.fields.files.ImageField')(max_length=100, null=True, blank=True)),
@@ -56,6 +58,8 @@ class Migration(SchemaMigration):
             ('zip', self.gf('django.db.models.fields.CharField')(max_length=30)),
             ('state', self.gf('django.db.models.fields.CharField')(max_length=30, blank=True)),
             ('country', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('latitude', self.gf('django.db.models.fields.PositiveSmallIntegerField')(null=True, blank=True)),
+            ('longitude', self.gf('django.db.models.fields.PositiveSmallIntegerField')(null=True, blank=True)),
             ('gender', self.gf('django.db.models.fields.CharField')(max_length=1, blank=True)),
             ('date_of_birth', self.gf('django.db.models.fields.DateField')(blank=True)),
             ('bio', self.gf('django.db.models.fields.TextField')(blank=True)),
@@ -99,6 +103,8 @@ class Migration(SchemaMigration):
             ('zip', self.gf('django.db.models.fields.CharField')(max_length=30)),
             ('state', self.gf('django.db.models.fields.CharField')(max_length=30, blank=True)),
             ('country', self.gf('django.db.models.fields.CharField')(max_length=30)),
+            ('latitude', self.gf('django.db.models.fields.PositiveSmallIntegerField')(blank=True)),
+            ('longitude', self.gf('django.db.models.fields.PositiveSmallIntegerField')(blank=True)),
             ('people_needed', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
             ('description', self.gf('django.db.models.fields.TextField')()),
             ('requirements', self.gf('django.db.models.fields.TextField')()),
@@ -127,8 +133,17 @@ class Migration(SchemaMigration):
             ('status', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['finalapp.Status'])),
             ('worker', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['finalapp.Worker'])),
             ('job_post', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['finalapp.JobPost'])),
-            ('date_created_job', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
-            ('date_changed_job', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('date_changed', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+        ))
+        db.send_create_signal(u'finalapp', ['Job'])
+
+        # Adding model 'WorkerReview'
+        db.create_table(u'finalapp_workerreview', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('job', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['finalapp.Job'], unique=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('date_changed', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('worker_show', self.gf('django.db.models.fields.CharField')(max_length=2)),
             ('worker_24hnotice', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('worker_job_completed', self.gf('django.db.models.fields.BooleanField')(default=False)),
@@ -139,18 +154,28 @@ class Migration(SchemaMigration):
             ('worker_punctuality', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
             ('worker_language', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
             ('worker_friendliness', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
-            ('worker_team', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
+            ('worker_team_interaction', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
             ('worker_presentation', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
-            ('worker_description', self.gf('django.db.models.fields.TextField')()),
+            ('worker_notes', self.gf('django.db.models.fields.TextField')()),
+        ))
+        db.send_create_signal(u'finalapp', ['WorkerReview'])
+
+        # Adding model 'EmployerReview'
+        db.create_table(u'finalapp_employerreview', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('job', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['finalapp.Job'], unique=True)),
+            ('date_created', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('date_changed', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('employer_show', self.gf('django.db.models.fields.CharField')(max_length=2)),
             ('employer_24hnotice', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('employer_confirm_job_completed', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('employer_responsiveness', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
             ('employer_friendliness', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
-            ('employer_accurate_jobdescription', self.gf('django.db.models.fields.TextField')()),
+            ('employer_accurate_jobdescription', self.gf('django.db.models.fields.PositiveSmallIntegerField')()),
             ('employer_punctual_payment', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('employer_notes', self.gf('django.db.models.fields.TextField')()),
         ))
-        db.send_create_signal(u'finalapp', ['Job'])
+        db.send_create_signal(u'finalapp', ['EmployerReview'])
 
 
     def backwards(self, orm):
@@ -180,6 +205,12 @@ class Migration(SchemaMigration):
 
         # Deleting model 'Job'
         db.delete_table(u'finalapp_job')
+
+        # Deleting model 'WorkerReview'
+        db.delete_table(u'finalapp_workerreview')
+
+        # Deleting model 'EmployerReview'
+        db.delete_table(u'finalapp_employerreview')
 
 
     models = {
@@ -239,6 +270,8 @@ class Migration(SchemaMigration):
             'first_name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'latitude': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'longitude': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'phone_number': ('django.db.models.fields.PositiveIntegerField', [], {'unique': 'True'}),
             'profile_photo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
@@ -247,34 +280,29 @@ class Migration(SchemaMigration):
             'username': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'zip': ('django.db.models.fields.CharField', [], {'max_length': '30'})
         },
-        u'finalapp.job': {
-            'Meta': {'object_name': 'Job'},
-            'date_changed_job': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'date_created_job': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+        u'finalapp.employerreview': {
+            'Meta': {'object_name': 'EmployerReview'},
+            'date_changed': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'employer_24hnotice': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'employer_accurate_jobdescription': ('django.db.models.fields.TextField', [], {}),
+            'employer_accurate_jobdescription': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
             'employer_confirm_job_completed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'employer_friendliness': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'employer_notes': ('django.db.models.fields.TextField', [], {}),
             'employer_punctual_payment': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'employer_responsiveness': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
             'employer_show': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'job': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['finalapp.Job']", 'unique': 'True'})
+        },
+        u'finalapp.job': {
+            'Meta': {'object_name': 'Job'},
+            'date_changed': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'job_post': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['finalapp.JobPost']"}),
             'status': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['finalapp.Status']"}),
-            'worker': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['finalapp.Worker']"}),
-            'worker_24hnotice': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'worker_description': ('django.db.models.fields.TextField', [], {}),
-            'worker_friendliness': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
-            'worker_hours_worked': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
-            'worker_job_completed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'worker_language': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
-            'worker_performance_quality': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
-            'worker_performance_speed': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
-            'worker_presentation': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
-            'worker_punctuality': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
-            'worker_responsiveness': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
-            'worker_show': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
-            'worker_team': ('django.db.models.fields.PositiveSmallIntegerField', [], {})
+            'worker': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['finalapp.Worker']"})
         },
         u'finalapp.jobpost': {
             'Meta': {'object_name': 'JobPost'},
@@ -292,6 +320,8 @@ class Migration(SchemaMigration):
             'end_time': ('django.db.models.fields.TimeField', [], {}),
             'hourly_rate': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'latitude': ('django.db.models.fields.PositiveSmallIntegerField', [], {'blank': 'True'}),
+            'longitude': ('django.db.models.fields.PositiveSmallIntegerField', [], {'blank': 'True'}),
             'people_needed': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
             'requirements': ('django.db.models.fields.TextField', [], {}),
             'start_date': ('django.db.models.fields.DateField', [], {}),
@@ -332,6 +362,8 @@ class Migration(SchemaMigration):
             'gender': ('django.db.models.fields.CharField', [], {'max_length': '1', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'last_name': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'latitude': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True', 'blank': 'True'}),
+            'longitude': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'password': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'phone_number': ('django.db.models.fields.PositiveIntegerField', [], {'unique': 'True'}),
             'profile_photo': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'null': 'True', 'blank': 'True'}),
@@ -339,6 +371,26 @@ class Migration(SchemaMigration):
             'user': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'worker'", 'unique': 'True', 'to': u"orm['auth.User']"}),
             'username': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'zip': ('django.db.models.fields.CharField', [], {'max_length': '30'})
+        },
+        u'finalapp.workerreview': {
+            'Meta': {'object_name': 'WorkerReview'},
+            'date_changed': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
+            'date_created': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'job': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['finalapp.Job']", 'unique': 'True'}),
+            'worker_24hnotice': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'worker_friendliness': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'worker_hours_worked': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'worker_job_completed': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'worker_language': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'worker_notes': ('django.db.models.fields.TextField', [], {}),
+            'worker_performance_quality': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'worker_performance_speed': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'worker_presentation': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'worker_punctuality': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'worker_responsiveness': ('django.db.models.fields.PositiveSmallIntegerField', [], {}),
+            'worker_show': ('django.db.models.fields.CharField', [], {'max_length': '2'}),
+            'worker_team_interaction': ('django.db.models.fields.PositiveSmallIntegerField', [], {})
         }
     }
 

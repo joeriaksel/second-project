@@ -1,0 +1,137 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', '-g', 'ionic' ]
+2 info using npm@1.3.24
+3 info using node@v0.10.25
+4 verbose cache add [ 'ionic', null ]
+5 verbose cache add name=undefined spec="ionic" args=["ionic",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'ionic',
+6 verbose parsed url   path: 'ionic',
+6 verbose parsed url   href: 'ionic' }
+7 silly lockFile 00d10074-ionic ionic
+8 verbose lock ionic /Users/jv/.npm/00d10074-ionic.lock
+9 silly lockFile 00d10074-ionic ionic
+10 silly lockFile 00d10074-ionic ionic
+11 verbose addNamed [ 'ionic', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 966fc04a-ionic ionic@
+14 verbose lock ionic@ /Users/jv/.npm/966fc04a-ionic.lock
+15 silly addNameRange { name: 'ionic', range: '*', hasData: false }
+16 verbose url raw ionic
+17 verbose url resolving [ 'https://registry.npmjs.org/', './ionic' ]
+18 verbose url resolved https://registry.npmjs.org/ionic
+19 info trying registry request attempt 1 at 13:52:10
+20 verbose etag "7PI51G6J83WEIMU0UNWQDZ2O5"
+21 http GET https://registry.npmjs.org/ionic
+22 http 304 https://registry.npmjs.org/ionic
+23 silly registry.get cb [ 304,
+23 silly registry.get   { date: 'Thu, 13 Mar 2014 20:52:10 GMT',
+23 silly registry.get     server: 'Apache',
+23 silly registry.get     via: '1.1 varnish',
+23 silly registry.get     'last-modified': 'Thu, 13 Mar 2014 20:52:10 GMT',
+23 silly registry.get     'cache-control': 'max-age=1',
+23 silly registry.get     etag: '"7PI51G6J83WEIMU0UNWQDZ2O5"',
+23 silly registry.get     'x-served-by': 'cache-sv95-SJC3',
+23 silly registry.get     'x-cache': 'MISS',
+23 silly registry.get     'x-cache-hits': '0',
+23 silly registry.get     'x-timer': 'S1394743930.616124153,VS0,VE90',
+23 silly registry.get     vary: 'Accept',
+23 silly registry.get     'content-length': '0',
+23 silly registry.get     'keep-alive': 'timeout=10, max=50',
+23 silly registry.get     connection: 'Keep-Alive' } ]
+24 verbose etag ionic from cache
+25 silly addNameRange number 2 { name: 'ionic', range: '*', hasData: true }
+26 silly addNameRange versions [ 'ionic',
+26 silly addNameRange   [ '0.9.6',
+26 silly addNameRange     '0.9.8',
+26 silly addNameRange     '0.9.9',
+26 silly addNameRange     '0.9.10',
+26 silly addNameRange     '0.9.11',
+26 silly addNameRange     '0.9.12',
+26 silly addNameRange     '0.9.13',
+26 silly addNameRange     '0.9.14',
+26 silly addNameRange     '0.9.15',
+26 silly addNameRange     '0.9.16' ] ]
+27 verbose addNamed [ 'ionic', '0.9.16' ]
+28 verbose addNamed [ '0.9.16', '0.9.16' ]
+29 silly lockFile 1481531a-ionic-0-9-16 ionic@0.9.16
+30 verbose lock ionic@0.9.16 /Users/jv/.npm/1481531a-ionic-0-9-16.lock
+31 silly lockFile 1481531a-ionic-0-9-16 ionic@0.9.16
+32 silly lockFile 1481531a-ionic-0-9-16 ionic@0.9.16
+33 silly lockFile 966fc04a-ionic ionic@
+34 silly lockFile 966fc04a-ionic ionic@
+35 silly resolved [ { name: 'ionic',
+35 silly resolved     version: '0.9.16',
+35 silly resolved     preferGlobal: true,
+35 silly resolved     description: 'A tool for creating and building Ionic Framework mobile apps.',
+35 silly resolved     homepage: 'http://ionicframework.com/',
+35 silly resolved     bin: { ionic: 'bin/ionic' },
+35 silly resolved     keywords:
+35 silly resolved      [ 'ionic',
+35 silly resolved        'ionic framework',
+35 silly resolved        'mobile',
+35 silly resolved        'html5',
+35 silly resolved        'cordova',
+35 silly resolved        'phonegap' ],
+35 silly resolved     repository:
+35 silly resolved      { type: 'git',
+35 silly resolved        url: 'https://github.com/driftyco/ionic-cli.git' },
+35 silly resolved     scripts: { test: 'echo "Error: no test specified" && exit 1' },
+35 silly resolved     author: { name: 'Max Lynch', email: 'max@drifty.com' },
+35 silly resolved     license: 'MIT',
+35 silly resolved     dependencies:
+35 silly resolved      { cordova: '~3.2.0',
+35 silly resolved        request: '2.27.0',
+35 silly resolved        shelljs: '0.2.6',
+35 silly resolved        unzip: '0.1.9',
+35 silly resolved        ncp: '0.4.2',
+35 silly resolved        optimist: '0.6.0',
+35 silly resolved        'event-stream': '3.0.x' },
+35 silly resolved     readme: 'Ionic-Cli\n=========\n\nThe Ionic Framework command line utility makes it easy to start, build, run, and emulate [Ionic](http://ionicframework.com/) apps. In the future, it will also have support for our mobile development services and tools that make Ionic even more powerful.\n\n## Installing\n\n```bash\n$ sudo npm install -g ionic\n```\n\n## Starting an Ionic App\n\n```bash\n$ ionic start myApp\n```\n\n## Adding a platform target\n\n```bash\n$ ionic platform ios android\n```\n\n## Building your app\n\n```bash\n$ ionic build ios\n```\n\n## Emulating your app\n\n```bash\n$ ionic emulate ios\n```\n\n## Running your app\n\n```bash\n$ ionic run ios\n```\n\nIonic uses Cordova underneath, so you can also substitute Cordova commands to prepare/build/emulate/run, or to add additional plugins.\n\nNote: we occasionally anonymous usage statistics to the Ionic team to make the tool better.\n',
+35 silly resolved     readmeFilename: 'README.md',
+35 silly resolved     bugs: { url: 'https://github.com/driftyco/ionic-cli/issues' },
+35 silly resolved     _id: 'ionic@0.9.16',
+35 silly resolved     _from: 'ionic@' } ]
+36 info install ionic@0.9.16 into /usr/local/lib
+37 info installOne ionic@0.9.16
+38 info /usr/local/lib/node_modules/ionic unbuild
+39 info preuninstall ionic@0.9.16
+40 info uninstall ionic@0.9.16
+41 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild ionic@0.9.16
+42 verbose /usr/local/bin,[object Object] binRoot
+43 info postuninstall ionic@0.9.16
+44 info /usr/local/lib/node_modules/ionic unbuild
+45 info preuninstall ionic@0.9.16
+46 info uninstall ionic@0.9.16
+47 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild ionic@0.9.16
+48 verbose /usr/local/bin,[object Object] binRoot
+49 info postuninstall ionic@0.9.16
+50 error error rolling back Error: EACCES, unlink '/usr/local/lib/node_modules/ionic'
+50 error error rolling back  ionic@0.9.16 { [Error: EACCES, unlink '/usr/local/lib/node_modules/ionic']
+50 error error rolling back   errno: 3,
+50 error error rolling back   code: 'EACCES',
+50 error error rolling back   path: '/usr/local/lib/node_modules/ionic' }
+51 error Error: EACCES, unlink '/usr/local/lib/node_modules/ionic'
+51 error  { [Error: EACCES, unlink '/usr/local/lib/node_modules/ionic']
+51 error   errno: 3,
+51 error   code: 'EACCES',
+51 error   path: '/usr/local/lib/node_modules/ionic' }
+52 error Please try running this command again as root/Administrator.
+53 error System Darwin 13.1.0
+54 error command "node" "/usr/local/bin/npm" "install" "-g" "ionic"
+55 error cwd /Users/jv/Desktop/RocketU/Developer Bootcamp/personal projects/final/final
+56 error node -v v0.10.25
+57 error npm -v 1.3.24
+58 error path /usr/local/lib/node_modules/ionic
+59 error code EACCES
+60 error errno 3
+61 error stack Error: EACCES, unlink '/usr/local/lib/node_modules/ionic'
+62 verbose exit [ 3, true ]
