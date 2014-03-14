@@ -2,7 +2,7 @@ from tastypie import fields
 from tastypie.resources import ModelResource
 from finalapp.models import Employer, MainUser, Worker, Category, Tag, JobPost, Status, Job, WorkerReview, \
     EmployerReview
-
+from tastypie.authorization import Authorization
 
 class UserResource(ModelResource):
     class Meta:
@@ -38,15 +38,17 @@ class TagResource(ModelResource):
         resource_name = "tag"
 
 class JobPostResource(ModelResource):
-    category = fields.ToManyField(CategoryResource, 'category', full=True)
-    tag = fields.ManyToManyField(TagResource, 'tag', full=True)
-    employer = fields.ToManyField(EmployerResource, 'employer', full=True)
-    workers = fields.ManyToManyField(WorkerResource, 'workers', full=True)
+    category = fields.ForeignKey(CategoryResource, 'category', full=True)
+    tag = fields.ToManyField(TagResource, 'tag', full=True, null=True)
+    employer = fields.ForeignKey(EmployerResource, 'employer', full=True)
+    workers = fields.ToManyField(WorkerResource, 'workers', full=True, null=True)
 
     class Meta:
         queryset = JobPost.objects.all()
         #name of the route/url:
         resource_name = "ad"
+        authorization = Authorization()
+        # allowed_methods = ["GET", "POST"]
 
 class StatusResource(ModelResource):
     class Meta:

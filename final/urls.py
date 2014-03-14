@@ -26,5 +26,14 @@ urlpatterns = patterns('',
     url(r'^$', 'finalapp.views.home', name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(v1_api.urls)),
+    # url('', include('social.apps.django_app.urls', namespace='social')),
 
+    # url(r'^signup-email/', 'finalapp.views.signup_email'),
+    # url(r'^email-sent/', 'finalapp.views.validation_sent'),
+    # url(r'^login/$', 'finalapp.views.home'),
+    # url(r'^logout/$', 'finalapp.views.logout'),
+    # url(r'^done/$', 'finalapp.views.done', name='done'),
+    # url(r'^email/$', 'finalapp.views.require_email', name='require_email'),
+    # url(r'', include('social.apps.django_app.urls', namespace='social'))
 )
+
